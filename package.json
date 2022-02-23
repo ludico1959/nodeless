@@ -1,6 +1,9 @@
 {
+  "name": "nodeless",
   "devDependencies": {
     "serverless": "^3.3.0"
   },
-  "name": "nodeless"
+  "dependencies": {
+    "sharp": "^0.30.1"
+  }
 }
