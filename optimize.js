@@ -17,13 +17,13 @@ module.exports.handle = async ({ Records: records }, context) => {
           Key: key,
         }).promise();
 
-        const optimized = await sharp(image.Body)
+        const optimizedImage = await sharp(image.Body)
           .resize(1280, 720, { fit: inside }, { withoutEnlargement: true })
           .toFormat("jpeg", { progressive: true }, { quality: 50 })
           .toBuffer();
 
         await S3.putObject({
-          Body: optimized,
+          Body: optimizedImage,
           Bucket: process.env.bucket,
           ContentType: "image/jpeg",
 
@@ -40,6 +40,7 @@ module.exports.handle = async ({ Records: records }, context) => {
     );
 
     return {
+      // Status code 301: Moved Permanently.
       statusCode: 301,
       body: {},
     };
