@@ -8,42 +8,37 @@ const S3 = new AWS.S3();
 
 module.exports.handle = async ({ Records: records }, context) => {
   try {
-    await Promise.all(
-      records.map(async (record) => {
-        const { key } = records.s3.object;
+    for (const record of records) {
+      const { key } = record.s3.object;
+      const bucketName = record.s3.bucket.name;
 
-        const image = await S3.getObject({
-          Bucket: process.env.bucket,
-          Key: key,
-        }).promise();
+      const image = await S3.getObject({
+        Bucket: bucketName,
+        Key: key,
+      }).promise();
 
-        const optimizedImage = await sharp(image.Body)
-          .resize(1280, 720, { fit: inside }, { withoutEnlargement: true })
-          .toFormat("jpeg", { progressive: true }, { quality: 50 })
-          .toBuffer();
+      const optimizedImage = await sharp(image.Body)
+        .resize(1280, 720, { fit: "inside" }, { withoutEnlargement: true })
+        .toFormat("jpeg", { progressive: true }, { quality: 50 })
+        .toBuffer();
 
-        await S3.putObject({
-          Body: optimizedImage,
-          Bucket: process.env.bucket,
-          ContentType: "image/jpeg",
+      await S3.putObject({
+        Body: optimizedImage,
+        Bucket: bucketName,
+        ContentType: "image/jpeg",
 
-          /* Key: image path.
-           * Example: uploads/nome-da-imagem.png
-           * basename: nome-da-imagem
-           * extname: .png
-           * 'basename(key, extname(key))': returns just the basename, without its extension name.
-           * This way we can add '.jpeg' into the template string below:
-           */
-          Key: `compressed/${basename(key, extname(key))}.jpeg`,
-        }).promise();
-      })
-    );
+        /* Key: image path.
+         * Example: uploads/nome-da-imagem.png
+         * basename: nome-da-imagem
+         * extname: .png
+         * 'basename(key, extname(key))': returns just the basename, without its extension name.
+         * This way we can add '.jpeg' into the template string below:
+         */
+        Key: `compressed/${basename(key, extname(key))}.jpeg`,
+      }).promise();
+    }
 
-    return {
-      // Status code 301: Moved Permanently.
-      statusCode: 301,
-      body: {},
-    };
+    return true;
   } catch (error) {
     return error;
   }

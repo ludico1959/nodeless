@@ -1,11 +1,15 @@
 {
   "name": "nodeless",
   "version": "1.0.0",
-  "main": "optimized.js",
+  "main": "optimize.js",
   "repository": "https://github.com/ludico1959/nodeless.git",
   "author": "Lucas Dias Coelho",
   "license": "MIT",
-  "scrips": {},
+  "scripts": {
+    "predeploy": "npm uninstall sharp && npm install --platform=linux --arch=x64 sharp",
+    "deploy": "./node_modules/.bin/serverless deploy --verbose",
+    "postdeploy": "npm uninstall sharp && npm install sharp"
+  },
   "devDependencies": {
     "serverless": "^3.3.0"
   },
