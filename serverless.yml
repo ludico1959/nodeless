@@ -68,6 +68,21 @@ iam:
 functions:
   optimize:
     handler: optimize.handle
+    environment: 
+      bucket: serveless
+    events: 
+      - s3:
+          bucket: serverless
+          event: s3:ObjectCreated:*
+          rules: 
+            - prefix: uploads/
+            - sufix: .jpg
+      - s3:
+          bucket: serverless
+          event: s3:ObjectCreated:*
+          rules: 
+            - prefix: uploads/
+            - sufix: .png
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
