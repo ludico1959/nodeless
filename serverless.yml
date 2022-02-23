@@ -24,6 +24,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: sa-east-1
+  memorySize: 256
 
 # you can overwrite defaults here
 #  stage: dev
