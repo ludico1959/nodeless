@@ -1,5 +1,11 @@
 {
   "name": "nodeless",
+  "version": "1.0.0",
+  "main": "optimized.js",
+  "repository": "https://github.com/ludico1959/nodeless.git",
+  "author": "Lucas Dias Coelho",
+  "license": "MIT",
+  "scrips": {},
   "devDependencies": {
     "serverless": "^3.3.0"
   },
