@@ -15,3 +15,49 @@ A whole lecture about this program can be found in [this YouTube video](https://
   - S3
   - CloudWatch
   - IAM 
+
+## 💭 Deployment steps
+
+### 1️⃣ Init the project
+```
+  npm init
+```
+```
+  yarn init
+```
+
+### 2️⃣ Install serverless framework 
+Install its third party module.
+```
+  npm i -D serverless
+```
+```
+  yarn add -D serverless
+```
+### 3️⃣ Create the service
+Create the service with the template aws-nodejs
+```
+./node_modules/.bin/serverless create --template aws-nodejs
+```
+This will create two main files in the working directory:
+- **serverless.yml**: each service configuration is managed in the serverless.yml file.
+- **handler.js**: contains your function code. The function definition in serverless.yml will point to this handler.js file and the function exported here.
+
+### 3️⃣ Config credentials
+Acess AWS Console, select IAM service and choose Users option. Add a new User selecting "Access type" = **Programmatic access** to enable an access key ID and secret access key, and "Permissions" = **Directly attach existing policies and AdministratorAccess**.
+
+Now, back to command line interpreter, type this to config the credentials replacing the placeholder:
+```
+./node_modules/.bin/serverless config credentials -o --provider aws --key=<ACESS_KEY_ID> --secret <SECRET_ACESS_KEY>
+```
+
+### 4️⃣ Deploy
+```
+./node_modules/.bin/serverless deploy --verbose
+```
+The **verbose** flag show everything that is happening during the deploy process on the console.
+
+### 5️⃣ Remove deployed function
+```
+./node_modules/.bin/serverless remove
+```
