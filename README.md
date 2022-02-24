@@ -96,7 +96,7 @@ Now, back to command line interpreter, type this to config the credentials repla
 ./node_modules/.bin/serverless deploy --verbose
 ```
 
-## 5️⃣ Trigger
+### 5️⃣ Trigger
 On the AWS Console, acess the Amazon S3.
 Find the created bucket inside Amazon S3 and create a folder called **uploads**.
 Upload big .jpg or .png file inside of it.
