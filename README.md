@@ -16,7 +16,8 @@ A whole lecture about this program can be found in [this YouTube video](https://
   - CloudWatch
   - IAM 
 
-## 💭 Deployment steps
+## 📡 Deployment tutorial
+These steps below are a guide for creating a serverless service like Nodeless. 
 
 ### 1️⃣ Init the project
 ```
@@ -65,4 +66,39 @@ Delete everything related to this serverless function inside the AWS S3.
 ```
 ./node_modules/.bin/serverless remove
 ```
+
+## 💭 Run serverless
+For running Nodeless service on AWS Lambda, follow the steps below:
+
+1️⃣ Clone repository
+```
+git clone https://github.com/ludico1959/msmary-store
+```
+
+2️⃣ Install modules
+```
+npm install
+```
+```
+yarn
+```
+
+### 3️⃣ Config credentials
+Acess AWS Console, select IAM service and choose Users option. Add a new User selecting "Access type" = **Programmatic access** to enable an access key ID and secret access key, and "Permissions" = **Directly attach existing policies and AdministratorAccess**.
+
+Now, back to command line interpreter, type this to config the credentials replacing the placeholder:
+```
+./node_modules/.bin/serverless config credentials -o --provider aws --key=<ACESS_KEY_ID> --secret <SECRET_ACESS_KEY>
+```
+
+### 4️⃣ Deploy
+```
+./node_modules/.bin/serverless deploy --verbose
+```
+
+## 5️⃣ Trigger
+On the AWS Console, acess the Amazon S3.
+Find the created bucket inside Amazon S3 and create a folder called **uploads**.
+Upload big .jpg or .png file inside of it.
+Then, it should create a new folder called **compressed** inside the bucket with the optimized image!
 
