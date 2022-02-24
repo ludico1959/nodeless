@@ -51,13 +51,18 @@ Now, back to command line interpreter, type this to config the credentials repla
 ./node_modules/.bin/serverless config credentials -o --provider aws --key=<ACESS_KEY_ID> --secret <SECRET_ACESS_KEY>
 ```
 
-### 4️⃣ Deploy
+### 4️⃣ Edit files in working directory
+Edit **serverless.yml** and **handler.js** files. 
+
+### 5️⃣ Deploy
 ```
 ./node_modules/.bin/serverless deploy --verbose
 ```
 The **verbose** flag show everything that is happening during the deploy process on the console.
 
-### 5️⃣ Remove deployed function
+### 6️⃣ Remove deployed function
+Delete everything related to this serverless function inside the AWS S3.
 ```
 ./node_modules/.bin/serverless remove
 ```
+
