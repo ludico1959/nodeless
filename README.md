@@ -70,12 +70,12 @@ Delete everything related to this serverless function inside the AWS S3.
 ## 💭 Run serverless
 For running Nodeless service on AWS Lambda, follow the steps below:
 
-## 1️⃣ Clone repository
+### 1️⃣ Clone repository
 ```
 git clone https://github.com/ludico1959/msmary-store
 ```
 
-## 2️⃣ Install modules
+### 2️⃣ Install modules
 ```
 npm install
 ```
