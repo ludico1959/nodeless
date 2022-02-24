@@ -1,4 +1,4 @@
-# NODELESS 📷📡💭💾
+# NODELESS 🖼☁🗃
 Nodeless is a application that manipulates and optimizse images that have been uploaded to Amazon S3 using AWS Lambda. 
 This is my first serverless application and it was build as a practice project while I was attending the AWS Lambda Foundations course from AWS Skill Builder.
 As its name implies, this app was build using Node.JS, Serverless Framework (all-in-one development & monitoring of auto-scaling apps on AWS Lambda) and sharp third party module for converting large images in common formats to smaller and web-friendly ones.
@@ -67,7 +67,7 @@ Delete everything related to this serverless function inside the AWS S3.
 ./node_modules/.bin/serverless remove
 ```
 
-## 💭 Run serverless
+## ☁ Run serverless
 For running Nodeless service on AWS Lambda, follow the steps below:
 
 ### 1️⃣ Clone repository
