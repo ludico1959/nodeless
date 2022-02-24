@@ -93,7 +93,10 @@ Now, back to command line interpreter, type this to config the credentials repla
 
 ### 4️⃣ Deploy
 ```
-./node_modules/.bin/serverless deploy --verbose
+npm run deploy
+```
+```
+npm deploy
 ```
 
 ### 5️⃣ Trigger
